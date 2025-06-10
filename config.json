@@ -1,0 +1,62 @@
+{
+    "sender_email":      "gem@sprylogic.com",
+    "sender_password":   "spry@1234",
+    "receiver_emails":   ["goldenf360@gmail.com"],
+    "smtp_server":       "smtp.office365.com",
+    "smtp_port":         587,
+  
+    "base_url":          "https://bidplus.gem.gov.in",
+    "search_url":        "https://bidplus.gem.gov.in/all-bids",
+    "selectors": {
+      "search_input":    "#searchBid",
+      "search_button":   "#searchBidRA",
+      "card":            "div.card",
+      "next_button":     "#light-pagination > a.page-link.next"
+    },
+    
+    "keywords_file":    "keywords.json",
+    "department_weights": {
+      "Railways":    5,
+      "Defence":     5,
+      "Power":       5,
+      "Telecom":     5,
+      "Electronics": 5
+    },
+  
+    "fuzzy_weight":          1.0,
+  
+    "thresholds": {
+      "default_single":       70,
+      "default_multi":        75,
+      "UPS":                  70,   
+      "Battery Charger":      70,
+      "Programmable DC Power Supply": 80,
+      "Frequency Converter":  80,
+      "Voltage Stabilizer":   55,
+      "AC Source":            50,
+      "Passbook Kiosk":       70,
+      "Passbook Printing Kiosk": 60,
+      "Cheque Deposit Kiosk": 45,
+      "Cheque Deposit Machine": 45,
+      "High Performance Power Supply": 80
+    },
+  
+    "synonyms": {
+      "programmable dc power supply": ["dc power supply","power supply"],
+      "ac source":                    ["alternating current source","ac power source"],
+      "frequency converter":          ["freq converter"],
+      "battery charger":              ["battery chargers"],
+      "voltage stabilizer":           ["voltage stabiliser","stabilizer"],
+      "ups":                          ["uninterruptible power supply"],
+      "passbook kiosk":               ["passbook machine","bank kiosk"],
+      "passbook printing kiosk":      ["passbook printer", "passbook update machine", "bankbook machine"],
+      "cheque deposit kiosk":         ["check deposit kiosk"],
+      "cheque deposit machine":       ["check deposit machine"]
+    },
+  
+    "max_threads":    4,
+    "sent_record":    "sent_bids.csv",
+    "retry_attempts": 3,
+    "retry_backoff":  2
+  }
+  
