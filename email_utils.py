@@ -10,7 +10,9 @@ from email import encoders
 
 
 def send_email(subject, body, config_path="config.json", attachments=None):
-    with open(config_path, 'r') as f:
+    base_path = os.path.dirname(os.path.abspath(__file__))
+    with open(os.path.join(base_path, config_path), 'r') as f:
+
         config = json.load(f)
 
     msg = MIMEMultipart()

@@ -15,6 +15,9 @@ from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeo
 from rapidfuzz import fuzz
 from email_utils import send_email
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+
 # ─── SETUP LOGGING ──────────────────────────────────────────────────────────────
 logging.basicConfig(
     format="[%(asctime)s %(levelname)s] %(message)s",
@@ -24,8 +27,12 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # ─── LOAD & VALIDATE CONFIG ─────────────────────────────────────────────────────
-def load_config(path="config.json"):
-    with open(path, encoding="utf-8") as f:
+def load_config(path=None):
+    if path is None:
+        path = os.path.join(BASE_DIR, "config.json")
+    with open(os.path.join(BASE_DIR, KEYWORDS_FILE), "r", encoding="utf-8") as f:
+
+
         cfg = json.load(f)
     for key in ("selectors","thresholds","synonyms","keywords_file","base_url","search_url"):  
         if key not in cfg:
