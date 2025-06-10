@@ -30,9 +30,7 @@ logger = logging.getLogger(__name__)
 def load_config(path=None):
     if path is None:
         path = os.path.join(BASE_DIR, "config.json")
-    with open(os.path.join(BASE_DIR, KEYWORDS_FILE), "r", encoding="utf-8") as f:
-
-
+    with open(path, "r", encoding="utf-8") as f:
         cfg = json.load(f)
     for key in ("selectors","thresholds","synonyms","keywords_file","base_url","search_url"):  
         if key not in cfg:
@@ -40,6 +38,10 @@ def load_config(path=None):
     return cfg
 
 cfg = load_config()
+KEYWORDS_FILE = cfg.get("keywords_file", "keywords.json")
+with open(KEYWORDS_FILE, "r", encoding="utf-8") as f:
+    KEYWORDS = json.load(f)
+
 THRESHOLDS = cfg["thresholds"]
 FW = cfg.get("fuzzy_weight", 1.0)
 DEPTS = {d.lower(): w for d, w in cfg.get("department_weights", {}).items()}
